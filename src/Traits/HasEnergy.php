@@ -2,23 +2,25 @@
 
 namespace Hacklabs\Trends\Traits;
 
+use Illuminate\Http\Request;
 use Hacklabs\Trends\Jobs\EnergyDecay;
 use Hacklabs\Trends\Models\Energy;
 use Illuminate\Support\Facades\DB;
 
 trait HasEnergy {
 
-    protected $decayTime = '24';
-
-    protected $ipBlacklist = [];
-
     public function addEnergy($amount = 1) {
-        $this->energy()->updateOrCreate([
-            'amount' => DB::raw("amount += {$amount} ")
-        ]);
-        EnergyDecay::dispatch($this, 0.25)->delay(now()->addHours($this->decayTime));
-        EnergyDecay::dispatch($this, 0.45)->delay(now()->addHours($this->decayTime * 2));
-        EnergyDecay::dispatch($this, 0.30)->delay(now()->addHours($this->decayTime * 3));
+        if(!$this->energy) {
+            $this->createEnergy();
+        }
+        if(!in_array(request()->ip(), config('trends.ip_blacklist'))) {
+            $this->energy()->update([
+                'amount' => $this->energy->amount += $amount
+            ]);
+            EnergyDecay::dispatch($this, 0.25)->delay(now()->addMinutes(config('trends.energy_decay')));
+            EnergyDecay::dispatch($this, 0.45)->delay(now()->addMinutes(config('trends.energy_decay') * 2));
+            EnergyDecay::dispatch($this, 0.30)->delay(now()->addMinutes(config('trends.energy_decay') * 3));
+        }
         return $this->energy;
     }
 
@@ -26,13 +28,23 @@ trait HasEnergy {
         return $this->morphOne(Energy::class, 'energisable');
     }
 
+    public function getEnergyAmountAttribute() {
+        return (float) $this->energy->amount;
+    }
+
     public function decayEnergy($amount) {
         $this->energy()->update([
-            'amount' => DB::raw("amount -= {$amount}")
+            'amount' => $this->energy->amount -= $amount
         ]);
     }
 
     public function getEntityName() {
         return str_slug(get_class($this).' '.$this->id);
+    }
+
+    public function createEnergy() {
+        return $this->energy()->create([
+            'amount' => 0
+        ]);
     }
 }
