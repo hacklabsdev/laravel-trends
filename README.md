@@ -2,7 +2,7 @@
 
 
 <p align="center">
-<a href="https://packagist.org/packages/hacklabsde/laravel-trends"><img src="https://poser.pugx.org/hacklabsdev/laravel-trends/d/total" alt="Total Downloads"></a> <a href="https://packagist.org/packages/hacklabsde/laravel-trends"><img src="https://poser.pugx.org/hacklabsdev/laravel-trends/v/stable" alt="Latest Stable Version"></a> <a href="https://packagist.org/packages/hacklabsde/laravel-trends"><img src="https://poser.pugx.org/hacklabsdev/laravel-trends/license" alt="License"></a>
+<a href="https://packagist.org/packages/hacklabsdev/laravel-trends"><img src="https://poser.pugx.org/hacklabsdev/laravel-trends/d/total" alt="Total Downloads"></a> <a href="https://packagist.org/packages/hacklabsdev/laravel-trends"><img src="https://poser.pugx.org/hacklabsdev/laravel-trends/v/stable" alt="Latest Stable Version"></a> <a href="https://packagist.org/packages/hacklabsdev/laravel-trends"><img src="https://poser.pugx.org/hacklabsdev/laravel-trends/license" alt="License"></a>
 </p>
 
 ## Introduction
