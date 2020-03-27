@@ -11,7 +11,7 @@ Have you ever wondered how Twitter's Hashtag system works? Laravel Trends provid
 
 ## Prerequisites
 
-Before you install the package make sure you have queues working as Trends uses it to control the tendences. Refer to Laravel [official documentation](https://laravel.com/docs/master/queues#introduction "official documentation") in order to configure queues in your project.
+Before you install the package make sure you have queues working and running since Trends uses it to control the tendences. Refer to Laravel [official documentation](https://laravel.com/docs/master/queues#introduction "official documentation") in order to configure queues in your project.
 
 ## Installation
 
