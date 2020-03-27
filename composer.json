@@ -1,0 +1,29 @@
+{
+    "name": "hacklabsdev/laravel-trends",
+    "description": "Laravel Trends provides a lightweight trending system to your application.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Felipe Martins",
+            "email": "felipe@hacklabs.com.br"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Hacklabs\\Trends\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Hacklabs\\Trends\\TrendsServiceProvider"
+            ],
+            "aliases": {
+                "LaravelRating": "Hacklabs\\Trends\\TrendsFacade"
+            }
+        }
+    },
+    "require": {}
+}
