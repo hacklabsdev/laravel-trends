@@ -7,7 +7,7 @@
 
 ## Introduction
 
-Have you ever wondered how Twitter's Hashtag system works? Laravel Trends provides a lightweight trending system to your application.
+Have you ever wondered how Twitter's Trending Topics works? Laravel Trends provides a lightweight trending system to your application.
 
 ## Prerequisites
 
@@ -17,7 +17,7 @@ Before you install the package make sure you have queues working and running sin
 
 You may install Laravel Trends via Composer:
 
-`$ composer require hacklabs/laravel-trends`
+`$ composer require hacklabsdev/laravel-trends`
 
 Next, publish the Trends configuration and migration files using the vendor:publish command. The configuration file will be placed in your config directory:
 

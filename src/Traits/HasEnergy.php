@@ -7,21 +7,21 @@ use Hacklabs\Trends\Jobs\EnergyDecay;
 use Hacklabs\Trends\Models\Energy;
 use Illuminate\Support\Facades\DB;
 
-trait HasEnergy {
-
+trait HasEnergy 
+{
     public function addEnergy($amount = 1) {
         if(!$this->energy) {
             $this->createEnergy();
         }
+        $entity = $this->fresh();
         if(!in_array(request()->ip(), config('trends.ip_blacklist'))) {
             $this->energy()->update([
-                'amount' => $this->energy->amount += $amount
+                'amount' => $entity->energy->amount += $amount
             ]);
-            EnergyDecay::dispatch($this, 0.25)->delay(now()->addHours(config('trends.energy_decay')));
-            EnergyDecay::dispatch($this, 0.45)->delay(now()->addHours(config('trends.energy_decay') * 2));
-            EnergyDecay::dispatch($this, 0.30)->delay(now()->addHours(config('trends.energy_decay') * 3));
+            EnergyDecay::dispatch($entity, 0.25)->delay(now()->addHours(config('trends.energy_decay')));
+            EnergyDecay::dispatch($entity, 0.45)->delay(now()->addHours(config('trends.energy_decay') * 2));
+            EnergyDecay::dispatch($entity, 0.30)->delay(now()->addHours(config('trends.energy_decay') * 3));
         }
-        return $this->energy;
     }
 
     public function energy() {
@@ -29,7 +29,7 @@ trait HasEnergy {
     }
 
     public function getEnergyAmountAttribute() {
-        return (float) $this->energy->amount;
+        return ($this->energy) ? (float) $this->energy->amount : 0;
     }
 
     public function decayEnergy($amount) {
