@@ -7,7 +7,7 @@ use Hacklabs\Trends\Jobs\EnergyDecay;
 use Hacklabs\Trends\Models\Energy;
 use Illuminate\Support\Facades\DB;
 
-trait HasEnergy 
+trait HasEnergy
 {
     public function addEnergy($amount = 1) {
         if(!$this->energy) {
@@ -33,8 +33,9 @@ trait HasEnergy
     }
 
     public function decayEnergy($amount) {
+    	$energisableAmount = $this->energy->amount;
         $this->energy()->update([
-            'amount' => $this->energy->amount -= $amount
+            'amount' => $energisableAmount - $amount
         ]);
     }
 
