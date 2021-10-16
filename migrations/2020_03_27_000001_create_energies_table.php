@@ -16,7 +16,7 @@ class CreateEnergiesTable extends Migration
         Schema::create('energies', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->morphs('energisable');
-            $table->float('amount', 8, 1);
+            $table->float('amount', 8, 2);
             $table->timestamps();
         });
     }
