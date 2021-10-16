@@ -18,9 +18,9 @@ trait HasEnergy
             $this->energy()->update([
                 'amount' => $entity->energy->amount += $amount
             ]);
-            EnergyDecay::dispatch($entity, 0.25)->delay(now()->addHours(config('trends.energy_decay')));
-            EnergyDecay::dispatch($entity, 0.45)->delay(now()->addHours(config('trends.energy_decay') * 2));
-            EnergyDecay::dispatch($entity, 0.30)->delay(now()->addHours(config('trends.energy_decay') * 3));
+            EnergyDecay::dispatch($entity, 0.25 * $amount)->delay(now()->addHours(config('trends.energy_decay')));
+            EnergyDecay::dispatch($entity, 0.45 * $amount)->delay(now()->addHours(config('trends.energy_decay') * 2));
+            EnergyDecay::dispatch($entity, 0.30 * $amount)->delay(now()->addHours(config('trends.energy_decay') * 3));
         }
     }
 
